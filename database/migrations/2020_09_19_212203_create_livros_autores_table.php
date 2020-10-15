@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLivroAutorsTable extends Migration
+class CreateLivrosAutoresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,7 +15,8 @@ class CreateLivroAutorsTable extends Migration
     {
         Schema::create('livros_autores', function (Blueprint $table) {
             $table->foreignId('autor_id')->constrained('autores');
-            $table->foreignId('livro_id')->constrained();
+            $table->unsignedBigInteger('livro_id');
+            $table->foreign('livro_id')->references('material_id')->on('livros');
             $table->unsignedTinyInteger('ordem');
             $table->timestamps();
             $table->softDeletes();

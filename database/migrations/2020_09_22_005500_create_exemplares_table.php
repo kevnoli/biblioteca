@@ -14,7 +14,7 @@ class CreateExemplaresTable extends Migration
     public function up()
     {
         Schema::create('exemplares', function (Blueprint $table) {
-            $table->bigIncrements('tombo')->primary();
+            $table->bigIncrements('tombo');
             $table->unsignedTinyInteger('numero');
             $table->unsignedDecimal('valor_aquisicao', 6, 2);
             $table->boolean('consulta')->default(false);

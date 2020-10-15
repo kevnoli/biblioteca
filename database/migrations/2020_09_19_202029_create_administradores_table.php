@@ -15,7 +15,6 @@ class CreateAdministradoresTable extends Migration
     {
         Schema::create('administradores', function (Blueprint $table) {
             $table->string('cpf', 11)->primary();
-            $table->primary('cpf');
             $table->string('nome', 200);
             $table->string('senha', 64);
             $table->string('email', 150);

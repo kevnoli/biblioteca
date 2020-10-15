@@ -15,7 +15,8 @@ class CreateItensEmprestimoTable extends Migration
     {
         Schema::create('itens_emprestimo', function (Blueprint $table) {
             $table->foreignId('emprestimo_id')->constrained();
-            $table->foreignId('exemplar_tombo')->constrained('exemplares');
+            $table->unsignedBigInteger('exemplar_tombo');
+            $table->foreign('exemplar_tombo')->references('tombo')->on('exemplares');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -40,7 +40,8 @@ class OutrosController extends Controller
      * @return Response
      */
     public function update(Outros $outro, Request $request){
-                
+        $outro->update($request->all());
+        return response()->json($outro, 200);
     }
 
     /**
@@ -49,7 +50,7 @@ class OutrosController extends Controller
      * @param Outros $outro
      * @return Response
      */        
-    public function delete(Outros $outro){
+    public function destroy(Outros $outro){
         $outro->delete();
         return response()->json(null, 204);
     }
@@ -61,6 +62,6 @@ class OutrosController extends Controller
      * @return Response
      */        
     public function show(Outros $outro){
-        return response()->json($outro);
+        return $outro;
     }
 }

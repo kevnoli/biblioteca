@@ -41,7 +41,8 @@ class EmprestimoController extends Controller
      * @return Response
      */
     public function update(Emprestimo $emprestimo, Request $request){
-                
+        $emprestimo->update($request->all());
+        return response()->json($emprestimo, 200);
     }
 
     /**
@@ -50,7 +51,7 @@ class EmprestimoController extends Controller
      * @param Emprestimo $emprestimo
      * @return Response
      */        
-    public function delete(Emprestimo $emprestimo){
+    public function destroy(Emprestimo $emprestimo){
         $emprestimo->delete();
         return response()->json(null, 204);
     }
@@ -62,6 +63,6 @@ class EmprestimoController extends Controller
      * @return Response
      */        
     public function show(Emprestimo $emprestimo){
-        return response()->json($emprestimo);
+        return $emprestimo;
     }
 }

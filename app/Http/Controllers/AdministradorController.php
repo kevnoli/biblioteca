@@ -53,7 +53,7 @@ class AdministradorController extends Controller
      * @param Administrador $administrador
      * @return Response
      */        
-    public function delete(Administrador $administrador){
+    public function destroy(Administrador $administrador){
         $administrador->delete();
         return response()->json(null, 204);
     }
@@ -65,7 +65,7 @@ class AdministradorController extends Controller
      * @return Response
      */        
     public function show(Administrador $administrador){
-        return response()->json($administrador);
+        return $administrador;
     }
 }
         

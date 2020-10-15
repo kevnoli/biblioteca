@@ -42,7 +42,8 @@ class AutorController extends Controller
      * @return Response
      */
     public function update(Autor $autor, Request $request){
-                
+        $autor->update($request->all());
+        return response()->json($autor, 200);
     }
 
     /**
@@ -63,6 +64,6 @@ class AutorController extends Controller
      * @return Response
      */        
     public function show(Autor $autor){
-        return response()->json($autor);
+        return $autor;
     }
 }

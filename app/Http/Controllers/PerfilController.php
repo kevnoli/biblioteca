@@ -44,7 +44,8 @@ class PerfilController extends Controller
      * @return Response
      */
     public function update(Perfil $perfil, Request $request){
-                
+        $perfil->update($request->all());
+        return response()->json($perfil, 200);
     }
 
     /**
@@ -53,7 +54,7 @@ class PerfilController extends Controller
      * @param Perfil $perfil
      * @return Response
      */        
-    public function delete(Perfil $perfil){
+    public function destroy(Perfil $perfil){
         $perfil->delete();
         return response()->json(null, 204);
     }
@@ -65,6 +66,6 @@ class PerfilController extends Controller
      * @return Response
      */        
     public function show(Perfil $perfil){
-        return response()->json($perfil);
+        return $perfil;
     }
 }

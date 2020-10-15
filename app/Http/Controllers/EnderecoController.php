@@ -45,7 +45,8 @@ class EnderecoController extends Controller
      * @return Response
      */
     public function update(Endereco $endereco, Request $request){
-                
+        $endereco->update($request->all());
+        return response()->json($endereco, 200);
     }
 
     /**
@@ -54,7 +55,7 @@ class EnderecoController extends Controller
      * @param Endereco $endereco
      * @return Response
      */        
-    public function delete(Endereco $endereco){
+    public function destroy(Endereco $endereco){
         $endereco->delete();
         return response()->json(null, 204);
     }
@@ -66,6 +67,6 @@ class EnderecoController extends Controller
      * @return Response
      */        
     public function show(Endereco $endereco){
-        return response()->json($endereco);
+        return $endereco;
     }
 }

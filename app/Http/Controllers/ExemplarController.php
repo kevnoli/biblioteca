@@ -42,7 +42,8 @@ class ExemplarController extends Controller
      * @return Response
      */
     public function update(Exemplar $exemplar, Request $request){
-                
+        $exemplar->update($request->all());
+        return response()->json($exemplar, 200);
     }
 
     /**
@@ -51,7 +52,7 @@ class ExemplarController extends Controller
      * @param Exemplar $exemplar
      * @return Response
      */        
-    public function delete(Exemplar $exemplar){
+    public function destroy(Exemplar $exemplar){
         $exemplar->delete();
         return response()->json(null, 204);
     }
@@ -63,6 +64,6 @@ class ExemplarController extends Controller
      * @return Response
      */        
     public function show(Exemplar $exemplar){
-        return response()->json($exemplar);
+        return $exemplar;
     }
 }

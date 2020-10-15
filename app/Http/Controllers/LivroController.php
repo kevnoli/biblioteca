@@ -44,7 +44,8 @@ class LivroController extends Controller
      * @return Response
      */
     public function update(Livro $livro, Request $request){
-                
+        $livro->update($request->all());
+        return response()->json($livro, 200);  
     }
 
     /**
@@ -53,7 +54,7 @@ class LivroController extends Controller
      * @param Livro $livro
      * @return Response
      */        
-    public function delete(Livro $livro){
+    public function destroy(Livro $livro){
         $livro->delete();
         return response()->json(null, 204);
     }
@@ -65,6 +66,6 @@ class LivroController extends Controller
      * @return Response
      */        
     public function show(Livro $livro){
-        return response()->json($livro);
+        return $livro;
     }
 }

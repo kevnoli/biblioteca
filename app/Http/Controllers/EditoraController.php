@@ -41,7 +41,8 @@ class EditoraController extends Controller
      * @return Response
      */
     public function update(Editora $editora, Request $request){
-                
+        $editora->update($request->all());
+        return response()->json($editora, 200);  
     }
 
     /**
@@ -50,7 +51,7 @@ class EditoraController extends Controller
      * @param Editora $editora
      * @return Response
      */        
-    public function delete(Editora $editora){
+    public function destroy(Editora $editora){
         $editora->delete();
         return response()->json(null, 204);
     }
@@ -62,6 +63,6 @@ class EditoraController extends Controller
      * @return Response
      */        
     public function show(Editora $editora){
-        return response()->json($editora);
+        return $editora;
     }
 }

@@ -45,7 +45,8 @@ class MaterialController extends Controller
      * @return Response
      */
     public function update(Material $material, Request $request){
-                
+        $material->update($request->all());
+        return response()->json($material, 200);
     }
 
     /**
@@ -54,7 +55,7 @@ class MaterialController extends Controller
      * @param Material $material
      * @return Response
      */        
-    public function delete(Material $material){
+    public function destroy(Material $material){
         $material->delete();
         return response()->json(null, 204);
     }
@@ -66,6 +67,6 @@ class MaterialController extends Controller
      * @return Response
      */        
     public function show(Material $material){
-        return response()->json($material);
+        return $material;
     }
 }

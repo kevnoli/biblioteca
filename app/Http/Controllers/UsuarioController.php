@@ -55,7 +55,7 @@ class UsuarioController extends Controller
      * @param Usuario $usuario
      * @return Response
      */        
-    public function delete(Usuario $usuario){
+    public function destroy(Usuario $usuario){
         $usuario->delete();
         return response()->json(null, 204);
     }
@@ -67,6 +67,6 @@ class UsuarioController extends Controller
      * @return Response
      */        
     public function show(Usuario $usuario){
-        return response()->json($usuario);
+        return $usuario;
     }
 }

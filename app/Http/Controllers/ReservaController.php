@@ -41,7 +41,8 @@ class ReservaController extends Controller
      * @return Response
      */
     public function update(Reserva $reserva, Request $request){
-                
+        $reserva->update($request->all());
+        return response()->json($reserva, 200);   
     }
 
     /**
@@ -50,7 +51,7 @@ class ReservaController extends Controller
      * @param Reserva $reserva
      * @return Response
      */        
-    public function delete(Reserva $reserva){
+    public function destroy(Reserva $reserva){
         $reserva->delete();
         return response()->json(null, 204);
     }
@@ -62,6 +63,6 @@ class ReservaController extends Controller
      * @return Response
      */        
     public function show(Reserva $reserva){
-        return response()->json($reserva);
+        return $reserva;
     }
 }

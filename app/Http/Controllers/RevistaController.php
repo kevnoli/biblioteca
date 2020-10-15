@@ -50,7 +50,7 @@ class RevistaController extends Controller
      * @param Revista $revista
      * @return Response
      */        
-    public function delete(Revista $revista){
+    public function destroy(Revista $revista){
         $revista->delete();
         return response()->json(null, 204);
     }
@@ -62,6 +62,6 @@ class RevistaController extends Controller
      * @return Response
      */        
     public function show(Revista $revista){
-        return response()->json($revista);
+        return $revista;
     }
 }

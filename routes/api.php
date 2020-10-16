@@ -2,6 +2,18 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AutorController;
+use App\Http\Controllers\EditoraController;
+use App\Http\Controllers\EmprestimoController;
+use App\Http\Controllers\EnderecoController;
+use App\Http\Controllers\ExemplarController;
+use App\Http\Controllers\LivroController;
+use App\Http\Controllers\MaterialController;
+use App\Http\Controllers\OutrosController;
+use App\Http\Controllers\PerfilController;
+use App\Http\Controllers\ReservaController;
+use App\Http\Controllers\RevistaController;
+use App\Http\Controllers\UsuarioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,98 +26,98 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::group([ 'prefix' => 'autores' ], function(){
-    Route::get('', 'AutorController@index');
-    Route::get('{autor}', 'AutorController@show');
-    Route::post('', 'AutorController@store');
-    Route::put('{autor}', 'AutorController@update');
-    Route::delete('{autor}', 'AutorController@destroy');    
+    Route::get('', [ AutorController::class, 'index' ]);
+    Route::get('{autor}', [ AutorController::class, 'show' ]);
+    Route::post('', [ AutorController::class, 'store' ]);
+    Route::put('{autor}', [ AutorController::class, 'update' ]);
+    Route::delete('{autor}', [ AutorController::class, 'destroy' ]);    
 });
 
 Route::group([ 'prefix' => 'editoras' ], function(){
-    Route::get('', 'EditoraController@index');
-    Route::get('{editora}', 'EditoraController@show');
-    Route::post('', 'EditoraController@store');
-    Route::put('{editora}', 'EditoraController@update');
-    Route::delete('{editora}', 'EditoraController@destroy');    
+    Route::get('', [ EditoraController::class, 'index' ]);
+    Route::get('{editora}', [ EditoraController::class, 'show' ]);
+    Route::post('', [ EditoraController::class, 'store' ]);
+    Route::put('{editora}', [ EditoraController::class, 'update' ]);
+    Route::delete('{editora}', [ EditoraController::class, 'destroy' ]);    
 });
 
-Route::group([ 'prefix' => 'empretimos' ], function(){
-    Route::get('', 'EmprestimoController@index');
-    Route::get('{emprestimo}', 'EmprestimoController@show');
-    Route::post('', 'EmprestimoController@store');
-    Route::put('{emprestimo}', 'EmprestimoController@update');
-    Route::delete('{emprestimo}', 'EmprestimoController@destroy');    
+Route::group([ 'prefix' => 'emprestimos' ], function(){
+    Route::get('', [ EmprestimoController::class, 'index' ]);
+    Route::get('{emprestimo}', [ EmprestimoController::class, 'show' ]);
+    Route::post('', [ EmprestimoController::class, 'store' ]);
+    Route::put('{emprestimo}', [ EmprestimoController::class, 'update' ]);
+    Route::delete('{emprestimo}', [ EmprestimoController::class, 'destroy' ]);    
 });
 
 Route::group([ 'prefix' => 'enderecos' ], function(){
-    Route::get('', 'EnderecoController@index');
-    Route::get('{endereco}', 'EnderecoController@show');
-    Route::post('', 'EnderecoController@store');
-    Route::put('{endereco}', 'EnderecoController@update');
-    Route::delete('{endereco}', 'EnderecoController@destroy');    
+    Route::get('', [ EnderecoController::class, 'index' ]);
+    Route::get('{endereco}', [ EnderecoController::class, 'show' ]);
+    Route::post('', [ EnderecoController::class, 'store' ]);
+    Route::put('{endereco}', [ EnderecoController::class, 'update' ]);
+    Route::delete('{endereco}', [ EnderecoController::class, 'destroy' ]);    
 });
 
 Route::group([ 'prefix' => 'exemplares' ], function(){
-    Route::get('', 'ExemplarController@index');
-    Route::get('{exemplar}', 'ExemplarController@show');
-    Route::post('', 'ExemplarController@store');
-    Route::put('{exemplar}', 'ExemplarController@update');
-    Route::delete('{exemplar}', 'ExemplarController@destroy');    
+    Route::get('', [ ExemplarController::class, 'index' ]);
+    Route::get('{exemplar}', [ ExemplarController::class, 'show' ]);
+    Route::post('', [ ExemplarController::class, 'store' ]);
+    Route::put('{exemplar}', [ ExemplarController::class, 'update' ]);
+    Route::delete('{exemplar}', [ ExemplarController::class, 'destroy' ]);    
 });
 
 Route::group([ 'prefix' => 'livros' ], function(){
-    Route::get('', 'LivroController@index');
-    Route::get('{livro}', 'LivroController@show');
-    Route::post('', 'LivroController@store');
-    Route::put('{livro}', 'LivroController@update');
-    Route::delete('{livro}', 'LivroController@destroy');    
+    Route::get('', [ LivroController::class, 'index' ]);
+    Route::get('{livro}', [ LivroController::class, 'show' ]);
+    Route::post('', [ LivroController::class, 'store' ]);
+    Route::put('{livro}', [ LivroController::class, 'update' ]);
+    Route::delete('{livro}', [ LivroController::class, 'destroy' ]);    
 });
 
 Route::group([ 'prefix' => 'materiais' ], function(){
-    Route::get('', 'MaterialController@index');
-    Route::get('{material}', 'MaterialController@show');
-    Route::post('', 'MaterialController@store');
-    Route::put('{material}', 'MaterialController@update');
-    Route::delete('{material}', 'MaterialController@destroy');    
+    Route::get('', [ MaterialController::class, 'index' ]);
+    Route::get('{material}', [ MaterialController::class, 'show' ]);
+    Route::post('', [ MaterialController::class, 'store' ]);
+    Route::put('{material}', [ MaterialController::class, 'update' ]);
+    Route::delete('{material}', [ MaterialController::class, 'destroy' ]);    
 });
 
 Route::group([ 'prefix' => 'outros' ], function(){
-    Route::get('', 'OutrosController@index');
-    Route::get('{outros}', 'OutrosController@show');
-    Route::post('', 'OutrosController@store');
-    Route::put('{outros}', 'OutrosController@update');
-    Route::delete('{outros}', 'OutrosController@destroy');    
+    Route::get('', [ MaterialController::class, 'index' ]);
+    Route::get('{outros}', [ MaterialController::class, 'show' ]);
+    Route::post('', [ MaterialController::class, 'store' ]);
+    Route::put('{outros}', [ MaterialController::class, 'update' ]);
+    Route::delete('{outros}', [ MaterialController::class, 'destroy' ]);    
 });
 
 Route::group([ 'prefix' => 'perfis' ], function(){
-    Route::get('', 'PerfilController@index');
-    Route::get('{perfil}', 'PerfilController@show');
-    Route::post('', 'PerfilController@store');
-    Route::put('{perfil}', 'PerfilController@update');
-    Route::delete('{perfil}', 'PerfilController@destroy');    
+    Route::get('', [ PerfilController::class, 'index' ]);
+    Route::get('{perfil}', [ PerfilController::class, 'show' ]);
+    Route::post('', [ PerfilController::class, 'store' ]);
+    Route::put('{perfil}', [ PerfilController::class, 'update' ]);
+    Route::delete('{perfil}', [ PerfilController::class, 'destroy' ]);    
 });
 
 Route::group([ 'prefix' => 'reservas' ], function(){
-    Route::get('', 'ReservaController@index');
-    Route::get('{reserva}', 'ReservaController@show');
-    Route::post('', 'ReservaController@store');
-    Route::put('{reserva}', 'ReservaController@update');
-    Route::delete('{reserva}', 'ReservaController@destroy');    
+    Route::get('', [ ReservaController::class, 'index' ]);
+    Route::get('{reserva}', [ ReservaController::class, 'show' ]);
+    Route::post('', [ ReservaController::class, 'store' ]);
+    Route::put('{reserva}', [ ReservaController::class, 'update' ]);
+    Route::delete('{reserva}', [ ReservaController::class, 'destroy' ]);    
 });
 
 Route::group([ 'prefix' => 'revista' ], function(){
-    Route::get('', 'RevistaController@index');
-    Route::get('{revista}', 'RevistaController@show');
-    Route::post('', 'RevistaController@store');
-    Route::put('{revista}', 'RevistaController@update');
-    Route::delete('{revista}', 'RevistaController@destroy');    
+    Route::get('', [ RevistaController::class, 'index' ]);
+    Route::get('{revista}', [ RevistaController::class, 'show' ]);
+    Route::post('', [ RevistaController::class, 'store' ]);
+    Route::put('{revista}', [ RevistaController::class, 'update' ]);
+    Route::delete('{revista}', [ RevistaController::class, 'destroy' ]);    
 });
 
 Route::group([ 'prefix' => 'usuarios' ], function(){
-    Route::get('', 'UsuarioController@index');
-    Route::get('{usuario}', 'UsuarioController@show');
-    Route::post('', 'UsuarioController@store');
-    Route::put('{usuario}', 'UsuarioController@update');
-    Route::delete('{usuario}', 'UsuarioController@destroy');    
+    Route::get('', [ UsuarioController::class, 'index' ]);
+    Route::get('{usuario}', [ UsuarioController::class, 'show' ]);
+    Route::post('', [ UsuarioController::class, 'store' ]);
+    Route::put('{usuario}', [ UsuarioController::class, 'update' ]);
+    Route::delete('{usuario}', [ UsuarioController::class, 'destroy' ]);    
 });
 

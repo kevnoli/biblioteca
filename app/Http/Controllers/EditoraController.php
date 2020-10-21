@@ -28,7 +28,8 @@ class EditoraController extends Controller
             'administrador_cpf' => 'required'
             ]);
         $editora = new Editora;
-        $editora = $request->all();
+        $editora->nome = $request->nome;
+        $editora->administrador_cpf = $request->administrador_cpf;
         $editora->save();
         return response()->json($editora, 201);
     }

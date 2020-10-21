@@ -31,7 +31,12 @@ class LivroController extends Controller
             'editora_id' => 'required'
             ]);
         $livro = new Livro;
-        $livro = $request->all();
+        $livro->material_id = $request->material_id;
+        $livro->isbn = $request->isbn;
+        $livro->edicao = $request->edicao;
+        $livro->qtd_paginas = $request->qtd_paginas;
+        $livro->classificacao = $request->classificacao;
+        $livro->editora_id = $request->editora_id;
         $livro->save();
         return response()->json($livro, 201);
     }

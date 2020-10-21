@@ -29,7 +29,9 @@ class AutorController extends Controller
             'administrador_cpf' => 'required'
             ]);
         $autor = new Autor;
-        $autor = $request->all();
+        $autor->nome = $request->nome;
+        $autor->sobrenome = $request->sobrenome;
+        $autor->administrador_cpf = $request->administrador_cpf;
         $autor->save();
         return response()->json($autor, 201);
     }
@@ -52,7 +54,7 @@ class AutorController extends Controller
      * @param Autor $autor
      * @return Response
      */        
-    public function delete(Autor $autor){
+    public function destroy(Autor $autor){
         $autor->delete();
         return response()->json(null, 204);
     }

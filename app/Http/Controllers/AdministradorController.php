@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
     
 use Illuminate\Http\Request;
 use App\Models\Administrador;
+use Illuminate\Support\Facades\Hash;
     
 class AdministradorController extends Controller
 {
@@ -31,7 +32,10 @@ class AdministradorController extends Controller
             'email'=> 'required'
             ]);
         $administrador = new Administrador;
-        $administrador = $request->all();
+        $administrador->cpf = $request->cpf;
+        $administrador->nome = $request->nome;
+        $administrador->senha = Hash::make($request->senha);
+        $administrador->email = $request->email;
         $administrador->save();
         return response()->json($administrador, 201);
     }

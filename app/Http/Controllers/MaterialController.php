@@ -32,7 +32,12 @@ class MaterialController extends Controller
             'administrador_cpf' => 'required',
             ]);
         $material = new Material;
-        $material = $request->all();
+        $material->titulo = $request->titulo;
+        $material->local = $request->local;
+        $material->ano_publicacao = $request->ano_publicacao;
+        $material->local_publicacao = $request->local_publicacao;
+        $material->tipo = $request->tipo;
+        $material->administrador_cpf = $administrador_cpf->titulo;
         $material->save();
         return response()->json($material, 201);
     }

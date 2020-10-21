@@ -31,7 +31,11 @@ class PerfilController extends Controller
             'max_reserva' => 'required'
             ]);
         $perfil = new Perfil;
-        $perfil = $request->all();
+        $perfil->max_livro = $request->max_livro;
+        $perfil->tempo_emprestimo = $request->tempo_emprestimo;
+        $perfil->tempo_renovacao = $request->tempo_renovacao;
+        $perfil->descricao = $request->descricao;
+        $perfil->max_reserva = $request->max_reserva;
         $perfil->save();
         return response()->json($perfil, 201);
     }

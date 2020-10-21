@@ -27,7 +27,7 @@ class OutrosController extends Controller
             'material_id' => 'required',
             ]);
         $outro = new Outros;
-        $outro = $request->all();
+        $outro->material_id = $request->material_id;
         $outro->save();
         return response()->json($outro, 201);
     }

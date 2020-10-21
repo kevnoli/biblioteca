@@ -28,7 +28,8 @@ class RevistaController extends Controller
             'numero' => 'required'
             ]);
         $revista = new Revista;
-        $revista = $request->all();
+        $revista->material_id = $request->material_id;
+        $revista->numero = $request->numero;
         $revista->save();
         return response()->json($revista, 201);
     }

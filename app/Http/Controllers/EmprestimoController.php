@@ -28,7 +28,8 @@ class EmprestimoController extends Controller
             'usuario_cpf' => 'required'
             ]);
         $emprestimo = new Emprestimo;
-        $emprestimo = $request->all();
+        $emprestimo->administrador_cpf = $request->administrador_cpf;
+        $emprestimo->usuario_cpf = $request->usuario_cpf;
         $emprestimo->save();
         return response()->json($emprestimo, 201);
     }

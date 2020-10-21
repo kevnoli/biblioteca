@@ -32,7 +32,13 @@ class EnderecoController extends Controller
             'uf' => 'required'
             ]);
         $endereco = new Endereco;
-        $endereco = $request->all();
+        $endereco->logradouro = $request->logradouro;
+        $endereco->bairro = $request->bairro;
+        $endereco->numero = $request->numero;
+        $endereco->complemento = $request->complemento;
+        $endereco->cep = $request->cep;
+        $endereco->cidade = $request->cidade;
+        $endereco->uf = $request->uf;
         $endereco->save();
         return response()->json($endereco, 201);
     }

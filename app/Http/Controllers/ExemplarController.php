@@ -29,7 +29,10 @@ class ExemplarController extends Controller
             'administrador_cpf' => 'required'
             ]);
         $exemplar = new Exemplar;
-        $exemplar = $request->all();
+        $exemplar->numero = $request->numero;
+        $exemplar->consulta = $request->consulta;
+        $exemplar->material_id = $request->material_id;
+        $exemplar->administrador_cpf = $request->administrador_cpf;
         $exemplar->save();
         return response()->json($exemplar, 201);
     }

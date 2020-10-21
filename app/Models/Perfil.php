@@ -10,6 +10,13 @@ class Perfil extends Model
     use HasFactory;
 
     /**
+     * A tabela associada ao modelo.
+     *
+     * @var string
+     */
+    protected $table = 'perfis';
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array

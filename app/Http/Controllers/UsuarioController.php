@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Usuario;
+use Illuminate\Support\Facades\Hash;
 
 class UsuarioController extends Controller
 {
@@ -25,6 +26,7 @@ class UsuarioController extends Controller
     public function store(Request $request){
         $request->validate([ 
             'cpf' => 'required',
+            'nome' => 'required',
             'telefone' => 'required',
             'senha' => 'required',
             'email' => 'required',
@@ -33,7 +35,14 @@ class UsuarioController extends Controller
             'administrador_cpf' => 'required', 
             ]);
         $usuario = new Usuario;
-        $usuario = $request->all();
+        $usuario->cpf = $request->cpf;
+        $usuario->nome = $request->nome;
+        $usuario->telefone = $request->telefone;
+        $usuario->senha = $request->senha;
+        $usuario->email = $request->email;
+        $usuario->endereco_id = $request->endereco_id;
+        $usuario->perfil_id = $request->perfil_id;
+        $usuario->administrador_cpf = $request->administrador_cpf;
         $usuario->save();
         return response()->json($usuario, 201);
     }

@@ -18,12 +18,11 @@ class CreateEnderecosTable extends Migration
             $table->string('logradouro', 250);
             $table->string('bairro', 150);
             $table->string('numero', 10);
-            $table->string('complemento', 200);
+            $table->string('complemento', 200)->nullable();
             $table->string('cep', 16);
             $table->string('cidade', 150);
             $table->string('uf', 2);
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

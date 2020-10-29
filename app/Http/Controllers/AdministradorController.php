@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Administrador;
 use Illuminate\Support\Facades\Hash;
+use App\Rules\Cpf;
     
 class AdministradorController extends Controller
 {
@@ -26,9 +27,9 @@ class AdministradorController extends Controller
      */
     public function store(Request $request){
         $request->validate([
-            'cpf' => 'required', 
+            'cpf' => [ 'required', new Cpf ], 
             'nome' => 'required', 
-            'senha' => 'required', 
+            'senha' => [ 'required', 'confirmed' ],
             'email'=> 'required'
             ]);
         $administrador = new Administrador;

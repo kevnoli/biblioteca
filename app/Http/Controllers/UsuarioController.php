@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Usuario;
-use Illuminate\Support\Facades\Hash;
+use App\Rules\Cpf;
 
 class UsuarioController extends Controller
 {
@@ -25,7 +25,7 @@ class UsuarioController extends Controller
      */
     public function store(Request $request){
         $request->validate([ 
-            'cpf' => 'required',
+            'cpf' => [ 'required', new Cpf ], 
             'nome' => 'required',
             'telefone' => 'required',
             'senha' => 'required',

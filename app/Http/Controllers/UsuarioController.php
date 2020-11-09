@@ -32,7 +32,6 @@ class UsuarioController extends Controller
             'email' => 'required',
             'endereco_id' => 'required',
             'perfil_id' => 'required',
-            'administrador_cpf' => 'required', 
             ]);
         $usuario = new Usuario;
         $usuario->cpf = $request->cpf;
@@ -42,7 +41,6 @@ class UsuarioController extends Controller
         $usuario->email = $request->email;
         $usuario->endereco_id = $request->endereco_id;
         $usuario->perfil_id = $request->perfil_id;
-        $usuario->administrador_cpf = $request->administrador_cpf;
         $usuario->save();
         return response()->json($usuario, 201);
     }

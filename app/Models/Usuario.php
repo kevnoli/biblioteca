@@ -2,19 +2,20 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class Usuario extends Model
+class Usuario extends Authenticatable
 {
-    use HasFactory;
-
+    use Notifiable;
+    
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = [ 'cpf', 'telefone', 'senha', 'email', 'endereco_id', 'perfil_id', 'administrador_cpf' ];
+    protected $fillable = [ 'cpf', 'telefone', 'senha', 'email', 'endereco_id', 'perfil_id'];
 
     /**
      * The attributes that are hidden.
@@ -43,13 +44,6 @@ class Usuario extends Model
      * @var string
      */
     protected $keyType = 'string';
-
-    /**
-     * Listar administrador que cadastrou o usuario.
-     */
-    public function administrador(){
-        return $this->belongsTo('App\Models\Administrador');
-    }
 
     /**
      * Listar endereco do usuario.

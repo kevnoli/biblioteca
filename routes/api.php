@@ -1,19 +1,8 @@
 <?php
 
+namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AutorController;
-use App\Http\Controllers\EditoraController;
-use App\Http\Controllers\EmprestimoController;
-use App\Http\Controllers\EnderecoController;
-use App\Http\Controllers\ExemplarController;
-use App\Http\Controllers\LivroController;
-use App\Http\Controllers\MaterialController;
-use App\Http\Controllers\OutrosController;
-use App\Http\Controllers\PerfilController;
-use App\Http\Controllers\ReservaController;
-use App\Http\Controllers\RevistaController;
-use App\Http\Controllers\UsuarioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +14,10 @@ use App\Http\Controllers\UsuarioController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::group([ 'prefix' => 'auth' ], function(){
+    Route::post('login', [ LoginController::class, 'authenticate' ]);
+});
+
 Route::group([ 'prefix' => 'autores' ], function(){
     Route::get('', [ AutorController::class, 'index' ]);
     Route::get('{autor}', [ AutorController::class, 'show' ]);

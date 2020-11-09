@@ -15,13 +15,13 @@ class LoginController extends Controller
     * 
     * @return Response
     */
-    public function authenticate(Request $request){
-        if (!$request->has(['cpf','senha'])) {
-            return response()->json(['message' => 'Credenciais faltando'],401);
+    public static function authenticate(Request $request){
+        if (!$request->has(['cpf','password'])) {
+            return response()->json(['message' => 'Credenciais faltando'], 401);
         }
-        $credenciais = $request->only('cpf', 'senha');
+        $credenciais = $request->only('cpf', 'password');
         if (Auth::attempt($credenciais)) {
-            return response()-json(['message' => 'Sucesso']);
+            return response()->json(['message' => 'Sucesso']);
         } else {
             return response()->json(['message' => 'Credenciais inválidas', $credenciais ], 401);
         }

@@ -19,8 +19,8 @@ class CreateExemplaresTable extends Migration
             $table->unsignedDecimal('valor_aquisicao', 6, 2);
             $table->boolean('consulta')->default(false);
             $table->foreignId('material_id')->constrained('materiais');
-            $table->string('administrador_cpf', 11);
-            $table->foreign('administrador_cpf')->references('cpf')->on('administradores');
+            $table->string('usuario_cpf', 11);
+            $table->foreign('usuario_cpf')->references('cpf')->on('usuarios');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -14,13 +14,13 @@ class Editora extends Model
      *
      * @var array
      */
-    protected $fillable = [ 'id', 'nome', 'administrador_cpf' ];
+    protected $fillable = [ 'id', 'nome', 'usuario_cpf' ];
 
     /**
      * Listar administrador que cadastrou a editora.
      */
     public function administrador(){
-        return $this->belongsTo('App\Models\Administrador');
+        return $this->belongsTo('App\Models\Usuario');
     }
 
     /**

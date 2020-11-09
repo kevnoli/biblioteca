@@ -16,7 +16,7 @@ class Emprestimo extends Model
      *
      * @var array
      */
-    protected $fillable = [ 'data_emprestimo', 'status', 'administrador_cpf', 'usuario_cpf' ];
+    protected $fillable = [ 'data_emprestimo', 'status', 'usuario_administrador_cpf', 'usuario_cpf' ];
 
     /**
      * Os valores padrão para os atributos do modelo.
@@ -31,7 +31,7 @@ class Emprestimo extends Model
      * Listar administrador que cadastrou o emprestimo.
      */
     public function administrador(){
-        return $this->belongsTo('App\Models\Administrador');
+        return $this->belongsTo('App\Models\Usuario');
     }
 
     /**

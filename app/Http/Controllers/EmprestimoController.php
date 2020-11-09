@@ -24,11 +24,11 @@ class EmprestimoController extends Controller
      */
     public function store(Request $request){
         $request->validate([ 
-            'administrador_cpf' => 'required', 
+            'usuario_administrador_cpf' => 'required', 
             'usuario_cpf' => 'required'
             ]);
         $emprestimo = new Emprestimo;
-        $emprestimo->administrador_cpf = $request->administrador_cpf;
+        $emprestimo->usuario_administrador_cpf = $request->usuario_administrador_cpf;
         $emprestimo->usuario_cpf = $request->usuario_cpf;
         $emprestimo->save();
         return response()->json($emprestimo, 201);

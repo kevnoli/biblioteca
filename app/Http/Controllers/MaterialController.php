@@ -29,7 +29,7 @@ class MaterialController extends Controller
             'ano_publicacao' => 'required',
             'local_publicacao' => 'required',
             'tipo' => 'required',
-            'administrador_cpf' => 'required',
+            'usuario_cpf' => 'required',
             ]);
         $material = new Material;
         $material->titulo = $request->titulo;
@@ -37,7 +37,7 @@ class MaterialController extends Controller
         $material->ano_publicacao = $request->ano_publicacao;
         $material->local_publicacao = $request->local_publicacao;
         $material->tipo = $request->tipo;
-        $material->administrador_cpf = $administrador_cpf->titulo;
+        $material->usuario_cpf = $request->usuario_cpf;
         $material->save();
         return response()->json($material, 201);
     }

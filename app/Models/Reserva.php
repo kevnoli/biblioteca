@@ -27,6 +27,6 @@ class Reserva extends Model
      * Listar material reservado pelo usuario.
      */
     public function material(){
-        return $this->hasOne('App\Models\Administrador');
+        return $this->hasOne('App\Models\Material');
     }
 }

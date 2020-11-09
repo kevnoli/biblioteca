@@ -20,8 +20,8 @@ class CreateMateriaisTable extends Migration
             $table->year('ano_publicacao');
             $table->string('local_publicacao', 150);
             $table->unsignedTinyInteger('tipo');
-            $table->string('administrador_cpf', 11);
-            $table->foreign('administrador_cpf')->references('cpf')->on('administradores');
+            $table->string('usuario_cpf', 11);
+            $table->foreign('usuario_cpf')->references('cpf')->on('usuarios');
             $table->timestamps();
             $table->softDeletes();
         });

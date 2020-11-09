@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Autor;
+use App\Rules\Cpf;
 
 class AutorController extends Controller
 {
@@ -26,12 +27,12 @@ class AutorController extends Controller
         $request->validate([
             'nome' => 'required', 
             'sobrenome' => 'required', 
-            'administrador_cpf' => 'required'
+            'usuario_cpf' => [ 'required', new Cpf ]
             ]);
         $autor = new Autor;
         $autor->nome = $request->nome;
         $autor->sobrenome = $request->sobrenome;
-        $autor->administrador_cpf = $request->administrador_cpf;
+        $autor->usuario_cpf = $request->usuario_cpf;
         $autor->save();
         return response()->json($autor, 201);
     }

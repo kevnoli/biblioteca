@@ -17,7 +17,8 @@ class CreateItensEmprestimoTable extends Migration
             $table->foreignId('emprestimo_id')->constrained();
             $table->unsignedBigInteger('exemplar_tombo');
             $table->foreign('exemplar_tombo')->references('tombo')->on('exemplares');
-            $table->timestamps();
+            $table->timestamp('data_devolucao')->nullable();
+            $table->timestamp('data_devolucao_prevista');
             $table->softDeletes();
         });
     }

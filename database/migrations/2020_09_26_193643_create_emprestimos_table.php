@@ -16,10 +16,10 @@ class CreateEmprestimosTable extends Migration
         Schema::create('emprestimos', function (Blueprint $table) {
             $table->id();
             $table->boolean('status')->default(false);
-            $table->string('administrador_cpf', 11);
-            $table->foreign('administrador_cpf')->references('cpf')->on('administradores');
             $table->string('usuario_cpf', 11);
             $table->foreign('usuario_cpf')->references('cpf')->on('usuarios');
+            $table->string('usuario_administrador_cpf', 11);
+            $table->foreign('usuario_administrador_cpf')->references('cpf')->on('usuarios');
             $table->timestamp('data_emprestimo');
             $table->softDeletes();
         });

@@ -26,13 +26,13 @@ class ExemplarController extends Controller
         $request->validate([ 
             'numero' => 'required',
             'material_id' => 'required',
-            'administrador_cpf' => 'required'
+            'usuario_cpf' => 'required'
             ]);
         $exemplar = new Exemplar;
         $exemplar->numero = $request->numero;
         $exemplar->consulta = $request->consulta;
         $exemplar->material_id = $request->material_id;
-        $exemplar->administrador_cpf = $request->administrador_cpf;
+        $exemplar->usuario_cpf = $request->usuario_cpf;
         $exemplar->save();
         return response()->json($exemplar, 201);
     }

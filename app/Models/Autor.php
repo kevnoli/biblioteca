@@ -14,7 +14,7 @@ class Autor extends Model
      *
      * @var array
      */
-    protected $fillable = [ 'nome', 'sobrenome', 'administrador_cpf' ];
+    protected $fillable = [ 'nome', 'sobrenome', 'usuario_cpf' ];
 
     /**
     * A tabela associada ao modelo.
@@ -27,6 +27,6 @@ class Autor extends Model
      * Listar administrador que cadastrou o autor.
      */
     public function administrador(){
-        return $this->belongsTo('App\Models\Administrador');
+        return $this->belongsTo('App\Models\Usuario');
     }
 }

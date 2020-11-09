@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLivrosAutoresTable extends Migration
+class CreateMateriaisAutoresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateLivrosAutoresTable extends Migration
      */
     public function up()
     {
-        Schema::create('livros_autores', function (Blueprint $table) {
+        Schema::create('materiais_autores', function (Blueprint $table) {
             $table->foreignId('autor_id')->constrained('autores');
-            $table->unsignedBigInteger('livro_id');
-            $table->foreign('livro_id')->references('material_id')->on('livros');
+            $table->unsignedBigInteger('material_id');
+            $table->foreign('material_id')->references('id')->on('materiais');
             $table->unsignedTinyInteger('ordem');
             $table->timestamps();
             $table->softDeletes();

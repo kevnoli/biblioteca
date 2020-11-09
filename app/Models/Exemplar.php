@@ -14,7 +14,7 @@ class Exemplar extends Model
      *
      * @var array
      */
-    protected $fillable = [ 'tombo', 'numero', 'valor_aquisicao', 'consulta', 'material_id', 'administrador_cpf' ];
+    protected $fillable = [ 'tombo', 'numero', 'valor_aquisicao', 'consulta', 'material_id', 'usuario_cpf' ];
     
     /**
      * A tabela associada ao modelo.
@@ -43,7 +43,7 @@ class Exemplar extends Model
      * Listar administrador que cadastrou o exemplar.
      */
     public function administrador(){
-        return $this->belongsTo('App\Models\Administrador');
+        return $this->belongsTo('App\Models\Usuario');
     }
 
     /**
@@ -54,7 +54,7 @@ class Exemplar extends Model
     }
 
     /**
-     * Listar administrador que cadastrou o emprestimo.
+     * Listar os emprestimos deste exemplar.
      */
     public function emprestimo(){
         return $this->belongsToMany('App\Models\Emprestimo', 'itens_emprestimo', 'emprestimo_id', 'exemplar_tombo');

@@ -15,13 +15,13 @@ class CreateUsuariosTable extends Migration
     {
         Schema::create('usuarios', function (Blueprint $table) {
             $table->string('cpf', 11)->primary();
-            $table->string('telefone', 20);
-            $table->string('senha', 64);
+            $table->string('nome', 200);
+            $table->string('senha');
             $table->string('email', 150);
+            $table->boolean('administrador')->default('false');
+            $table->string('telefone', 20);
             $table->foreignId('endereco_id')->constrained();
             $table->foreignId('perfil_id')->constrained('perfis');
-            $table->string('administrador_cpf', 11);
-            $table->foreign('administrador_cpf')->references('cpf')->on('administradores');
             $table->timestamps();
             $table->softDeletes();
         });

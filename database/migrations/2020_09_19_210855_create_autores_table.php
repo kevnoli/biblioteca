@@ -17,8 +17,8 @@ class CreateAutoresTable extends Migration
             $table->id();
             $table->string('nome', 200);
             $table->string('sobrenome', 100);
-            $table->string('administrador_cpf', 11);
-            $table->foreign('administrador_cpf')->references('cpf')->on('administradores');
+            $table->string('usuario_cpf', 11);
+            $table->foreign('usuario_cpf')->references('cpf')->on('usuarios');
             $table->timestamps();
             $table->softDeletes();
         });

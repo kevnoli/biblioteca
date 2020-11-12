@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\Usuario;
 use App\Rules\Cpf;
 
-class UsuarioController extends Controller
+class UsuarioController extends Authenticatable implements JWTSubject
 {
     /**
      * Lista todos os usuarios.

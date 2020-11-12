@@ -14,11 +14,22 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::group([ 'prefix' => 'auth' ], function(){
-    Route::post('login', [ LoginController::class, 'authenticate' ]);
+Route::group([
+
+    'middleware' => 'api',
+    'prefix' => 'auth'
+
+], function ($router) {
+
+    Route::post('login', [ AuthController::class, 'login' ]);
+    Route::post('logout', [ AuthController::class, 'logout' ]);
+    Route::post('refresh', [ AuthController::class, 'refresh' ]);
+    Route::post('me', [ AuthController::class, 'me' ]);
 });
 
-Route::group([ 'prefix' => 'autores' ], function(){
+
+
+Route::group([ 'middleware' => 'jwt.auth', 'prefix' => 'autores' ], function(){
     Route::get('', [ AutorController::class, 'index' ]);
     Route::get('{autor}', [ AutorController::class, 'show' ]);
     Route::post('', [ AutorController::class, 'store' ]);
@@ -82,7 +93,7 @@ Route::group([ 'prefix' => 'outros' ], function(){
     Route::delete('{outros}', [ MaterialController::class, 'destroy' ]);    
 });
 
-Route::group([ 'prefix' => 'perfis' ], function(){
+Route::group([ 'middleware' => 'jwt.auth', 'prefix' => 'perfis' ], function(){
     Route::get('', [ PerfilController::class, 'index' ]);
     Route::get('{perfil}', [ PerfilController::class, 'show' ]);
     Route::post('', [ PerfilController::class, 'store' ]);
@@ -90,7 +101,7 @@ Route::group([ 'prefix' => 'perfis' ], function(){
     Route::delete('{perfil}', [ PerfilController::class, 'destroy' ]);    
 });
 
-Route::group([ 'prefix' => 'reservas' ], function(){
+Route::group([ 'middleware' => 'jwt.auth', 'prefix' => 'reservas' ], function(){
     Route::get('', [ ReservaController::class, 'index' ]);
     Route::get('{reserva}', [ ReservaController::class, 'show' ]);
     Route::post('', [ ReservaController::class, 'store' ]);
@@ -98,7 +109,7 @@ Route::group([ 'prefix' => 'reservas' ], function(){
     Route::delete('{reserva}', [ ReservaController::class, 'destroy' ]);    
 });
 
-Route::group([ 'prefix' => 'revista' ], function(){
+Route::group([ 'middleware' => 'jwt.auth', 'prefix' => 'revista' ], function(){
     Route::get('', [ RevistaController::class, 'index' ]);
     Route::get('{revista}', [ RevistaController::class, 'show' ]);
     Route::post('', [ RevistaController::class, 'store' ]);
@@ -106,7 +117,7 @@ Route::group([ 'prefix' => 'revista' ], function(){
     Route::delete('{revista}', [ RevistaController::class, 'destroy' ]);    
 });
 
-Route::group([ 'prefix' => 'usuarios' ], function(){
+Route::group([ 'middleware' => 'jwt.auth', 'prefix' => 'usuarios' ], function(){
     Route::get('', [ UsuarioController::class, 'index' ]);
     Route::get('{usuario}', [ UsuarioController::class, 'show' ]);
     Route::post('', [ UsuarioController::class, 'store' ]);

@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 
-class Usuario extends Authenticatable
+class Usuario extends Authenticatable implements JWTSubject
 {
     use Notifiable;
 
@@ -15,14 +15,14 @@ class Usuario extends Authenticatable
     }
     
     /**
-     * The attributes that are mass assignable.
+     * Os atributos de atribuição em massa.
      *
      * @var array
      */
     protected $fillable = [ 'cpf', 'telefone', 'senha', 'email', 'endereco_id', 'perfil_id'];
 
     /**
-     * The attributes that are hidden.
+     * Os atributos escondidos.
      *
      * @var array
      */
@@ -75,5 +75,25 @@ class Usuario extends Authenticatable
      */
     public function emprestimos(){
         return $this->hasMany('App\Models\Emprestimo');
+    }
+
+    /**
+     * O identificador que será salvo no sujeito JWT.
+     *
+     * @return mixed
+     */
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    /**
+     * Return a key value array, containing any custom claims to be added to the JWT.
+     *
+     * @return array
+     */
+    public function getJWTCustomClaims()
+    {
+        return [];
     }
 }

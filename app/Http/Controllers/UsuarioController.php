@@ -7,7 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\Usuario;
 use App\Rules\Cpf;
 
-class UsuarioController extends Authenticatable implements JWTSubject
+class UsuarioController extends Controller
 {
     /**
      * Lista todos os usuarios.

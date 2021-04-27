@@ -109,7 +109,7 @@ Route::group([ 'middleware' => 'jwt.auth', 'prefix' => 'reservas' ], function(){
     Route::delete('{reserva}', [ ReservaController::class, 'destroy' ]);    
 });
 
-Route::group([ 'middleware' => 'jwt.auth', 'prefix' => 'revista' ], function(){
+Route::group([ 'middleware' => 'jwt.auth', 'prefix' => 'revistas' ], function(){
     Route::get('', [ RevistaController::class, 'index' ]);
     Route::get('{revista}', [ RevistaController::class, 'show' ]);
     Route::post('', [ RevistaController::class, 'store' ]);

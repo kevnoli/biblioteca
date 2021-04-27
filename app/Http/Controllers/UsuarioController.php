@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Validation\Rules\Password;
 use App\Models\Usuario;
 use App\Rules\Cpf;
 
@@ -33,7 +33,7 @@ class UsuarioController extends Controller
             'email' => 'required',
             'endereco_id' => 'required',
             'perfil_id' => 'required',
-            ]);
+        ]);
         $usuario = new Usuario;
         $usuario->cpf = $request->cpf;
         $usuario->nome = $request->nome;
@@ -54,7 +54,13 @@ class UsuarioController extends Controller
      * @return Response
      */
     public function update(Usuario $usuario, Request $request){
-                
+        if($request->has('password')){
+            $request->validate([
+                'password' => [ 'confirmed', Password::min(8)->letters()->mixedCase()->numbers()->symbols()]
+            ]);
+        }
+        $usuario->update($request->all());
+        return response($usuario, 200);
     }
 
     /**

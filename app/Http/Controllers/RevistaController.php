@@ -42,7 +42,8 @@ class RevistaController extends Controller
      * @return Response
      */
     public function update(Revista $revista, Request $request){
-                
+        $revista->update($request->all());
+        return response()->json($revista, 200);
     }
 
     /**

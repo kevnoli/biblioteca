@@ -28,7 +28,8 @@ class LivroController extends Controller
             'isbn' => [ 'required', 'unique:livros' ], 
             'edicao' => 'required',
             'classificacao' => 'required', 
-            'editora_id' => 'required'
+            'editora_id' => 'required',
+            'qtd_paginas' => 'required'
             ]);
         $livro = new Livro;
         $livro->material_id = $request->material_id;

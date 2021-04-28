@@ -16,7 +16,7 @@ class CreateExemplaresTable extends Migration
         Schema::create('exemplares', function (Blueprint $table) {
             $table->bigIncrements('tombo');
             $table->unsignedTinyInteger('numero');
-            $table->unsignedDecimal('valor_aquisicao', 6, 2);
+            $table->unsignedDecimal('valor_aquisicao', 6, 2)->nullable();
             $table->boolean('consulta')->default(false);
             $table->foreignId('material_id')->constrained('materiais');
             $table->string('usuario_cpf', 11);

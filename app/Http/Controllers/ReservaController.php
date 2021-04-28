@@ -26,10 +26,12 @@ class ReservaController extends Controller
         $request->validate([
             'status' => 'required', 
             'usuario_cpf' => 'required',
+            'material_id' => 'required'
             ]);
         $reserva = new Reserva;
         $reserva->status = $request->status;
         $reserva->usuario_cpf = $request->usuario_cpf;
+        if(!$request->has('data_reserva')) $reserva->data_reserva = now();
         $reserva->save();
         return response()->json($reserva, 201);
     }

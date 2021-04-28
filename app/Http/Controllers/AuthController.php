@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Usuario;
 
 class AuthController extends Controller
 {
@@ -28,7 +26,7 @@ class AuthController extends Controller
     {
         $credentials = request(['cpf', 'password']);
 
-        if (! $token = auth()->attempt($credentials)) {
+        if (! $token = Auth::attempt($credentials)) {
             return response()->json(['erro' => 'Não autorizado'], 401);
         }
 
@@ -42,7 +40,7 @@ class AuthController extends Controller
      */
     public function me()
     {
-        return response()->json(auth()->user());
+        return response()->json(Auth::user());
     }
 
     /**
@@ -52,7 +50,7 @@ class AuthController extends Controller
      */
     public function logout()
     {
-        auth()->logout();
+        Auth::logout();
 
         return response()->json(['mensagem' => 'Desconectado com sucesso']);
     }
@@ -64,7 +62,7 @@ class AuthController extends Controller
      */
     public function refresh()
     {
-        return $this->respondWithToken(auth()->refresh());
+        return $this->respondWithToken(Auth::refresh());
     }
 
     /**
@@ -79,7 +77,7 @@ class AuthController extends Controller
         return response()->json([
             'token' => $token,
             'token_tipo' => 'bearer',
-            'expira_em' => auth()->factory()->getTTL() * 60
+            'expira_em' => Auth::factory()->getTTL() * 60
         ]);
     }
 }

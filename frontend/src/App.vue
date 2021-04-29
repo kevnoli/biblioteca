@@ -59,9 +59,22 @@
     </v-navigation-drawer>
 
     <v-app-bar app color="primary" dark dense>
-      <v-app-bar-nav-icon @click.stop="navbar = !navbar">
+      <v-app-bar-nav-icon
+        v-if="this.$auth.check()"
+        @click.stop="navbar = !navbar"
+      >
       </v-app-bar-nav-icon>
       <v-toolbar-title></v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn
+        v-if="this.$auth.check()"
+        :loading="logout_btn"
+        :disabled="logout_btn"
+        icon
+        @click="logout()"
+      >
+        <v-icon>mdi-logout-variant</v-icon>
+      </v-btn>
     </v-app-bar>
 
     <v-main>
@@ -80,8 +93,23 @@ export default {
   name: "App",
 
   data: () => ({
-    navbar: false
+    navbar: false,
+    logout_btn: false,
   }),
+
+  methods: {
+    logout() {
+      this.logout_btn = true;
+      this.$auth
+        .logout({
+          makeRequest: true,
+          redirect: { name: "login" },
+        })
+        .then(() => {
+          this.logout_btn = false;
+        });
+    },
+  },
 
   /*components: {
     VLibras

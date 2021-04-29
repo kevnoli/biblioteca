@@ -16,11 +16,17 @@ Vue.use(auth, {
     router: Router
   },
   options: {
-    tokenDefaultKey: 'token',
+    tokenDefaultKey: 'auth_token',
     fetchData: {
       url: 'auth/usuario',
-      method: 'GET',
+      method: 'POST',
       enabled: true
+    },
+    refreshData: {
+      url: 'auth/refresh',
+      method: 'POST',
+      enabled: true,
+      interval: 30
     }
   }
 });

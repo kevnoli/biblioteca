@@ -24,13 +24,11 @@ class AuthController extends Controller
      */
     public function login()
     {
-        $credentials = request(['cpf', 'password']);
+        $credenciais = request(['cpf', 'password']);
 
-        if (! $token = Auth::attempt($credentials)) {
-            return response()->json(['erro' => 'Não autorizado'], 401);
+        if ($token = Auth::attempt($credenciais)) {
+            return response()->json()->header('Authorization', $token);
         }
-
-        return $this->respondWithToken($token);
     }
 
     /**
@@ -38,7 +36,7 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function me()
+    public function usuario()
     {
         return response()->json(Auth::user());
     }
@@ -56,28 +54,17 @@ class AuthController extends Controller
     }
 
     /**
-     * Atualizar um token.
+     * Atualiza um token.
      *
      * @return \Illuminate\Http\JsonResponse
      */
     public function refresh()
     {
-        return $this->respondWithToken(Auth::refresh());
+        if ($token = Auth::refresh()) {
+            return response()
+                ->json()
+                ->header('Authorization', $token);
+        }
     }
 
-    /**
-     * Retorna a estrutura do token.
-     *
-     * @param  string $token
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    protected function respondWithToken($token)
-    {
-        return response()->json([
-            'token' => $token,
-            'token_tipo' => 'bearer',
-            'expira_em' => Auth::factory()->getTTL() * 60
-        ]);
-    }
 }

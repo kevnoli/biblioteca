@@ -68,11 +68,13 @@
       <v-spacer></v-spacer>
       <v-btn
         v-if="this.$auth.check()"
+        depressed
+        color="error"
         :loading="logout_btn"
         :disabled="logout_btn"
-        icon
         @click="logout()"
       >
+        SAIR
         <v-icon>mdi-logout-variant</v-icon>
       </v-btn>
     </v-app-bar>

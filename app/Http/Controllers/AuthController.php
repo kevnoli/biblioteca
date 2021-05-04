@@ -28,6 +28,8 @@ class AuthController extends Controller
 
         if ($token = Auth::attempt($credenciais)) {
             return response()->json()->header('Authorization', $token);
+        } else {
+            return response()->json(['mensagem' => 'Não autorizado'], 401);
         }
     }
 

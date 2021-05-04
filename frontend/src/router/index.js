@@ -14,12 +14,16 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/",
+    path: "/consultas",
     name: "consultas",
     component: Consultas,
     meta: {
       auth: true
     } 
+  },
+  {
+    path: "/",
+    redirect: { name: 'consultas' }
   },
   {
     path: "/login",

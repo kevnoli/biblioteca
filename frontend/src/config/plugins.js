@@ -19,7 +19,7 @@ Vue.use(auth, {
     loginData: {
       url: '/auth/login',
       method: 'POST',
-      redirect: '/',
+      redirect: '/consultas',
       fetchUser: 'true'
   },
 

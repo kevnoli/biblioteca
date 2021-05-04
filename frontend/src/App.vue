@@ -2,7 +2,7 @@
   <v-app>
     <v-navigation-drawer app temporary v-model="navbar">
       <v-list nav>
-        <v-list-item link>
+        <v-list-item link to="consultas">
           <v-list-item-icon>
             <v-icon>mdi-book-search-outline</v-icon>
           </v-list-item-icon>
@@ -11,7 +11,7 @@
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item link>
+        <v-list-item link to="usuarios">
           <v-list-item-icon>
             <v-icon>mdi-account</v-icon>
           </v-list-item-icon>
@@ -20,7 +20,7 @@
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item link>
+        <v-list-item link to="acervo">
           <v-list-item-icon>
             <v-icon>mdi-bookshelf</v-icon>
           </v-list-item-icon>
@@ -29,7 +29,7 @@
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item link>
+        <v-list-item link to="perfis">
           <v-list-item-icon>
             <v-icon>mdi-account-supervisor</v-icon>
           </v-list-item-icon>
@@ -38,7 +38,7 @@
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item link>
+        <v-list-item link to="editoras">
           <v-list-item-icon>
             <v-icon>mdi-book-arrow-right</v-icon>
           </v-list-item-icon>
@@ -47,7 +47,7 @@
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item link>
+        <v-list-item link to="autores">
           <v-list-item-icon>
             <v-icon>mdi-book-account</v-icon>
           </v-list-item-icon>

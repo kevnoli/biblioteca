@@ -7,12 +7,23 @@
           <label for="cpf">CPF</label>
           <v-text-field id="cpf" v-model="cpf"></v-text-field>
           <label for="senha">Senha</label>
-          <v-text-field id="senha" v-model="senha" type="password" hide-details></v-text-field>
+          <v-text-field
+            id="senha"
+            v-model="senha"
+            type="password"
+            hide-details
+          ></v-text-field>
         </v-form>
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="primary" @click="login">ENTRAR</v-btn>
+        <v-btn
+          color="primary"
+          :loading="login_btn"
+          :disabled="login_btn"
+          @click="login"
+          >ENTRAR</v-btn
+        >
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -25,15 +36,24 @@ export default {
     valido: false,
     cpf: "",
     senha: "",
+    login_btn: false,
   }),
   methods: {
     login() {
-      this.$auth.login({
-        data: {
-          cpf: this.cpf,
-          password: this.senha
-        },
-      });
+      this.login_btn = true;
+      this.$auth
+        .login({
+          data: {
+            cpf: this.cpf,
+            password: this.senha,
+          },
+        })
+        .catch((e) => {
+          this.$dialog.notify.error(e.response.data.mensagem);
+        })
+        .finally(() => {
+          this.login_btn = false;
+        });
     },
   },
 };

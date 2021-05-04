@@ -13,22 +13,24 @@ class AutorController extends Controller
      *
      * @return Response
      */
-    public function index(){
+    public function index()
+    {
         return Autor::all();
-     }
-     
-     /**
+    }
+
+    /**
      * Cria nova instância de autor.
      *
      * @param Request $request
      * @return Response
      */
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $request->validate([
-            'nome' => 'required', 
-            'sobrenome' => 'required', 
-            'usuario_cpf' => [ 'required', new Cpf ]
-            ]);
+            'nome' => 'required',
+            'sobrenome' => 'required',
+            'usuario_cpf' => ['required', new Cpf]
+        ]);
         $autor = new Autor;
         $autor->nome = $request->nome;
         $autor->sobrenome = $request->sobrenome;
@@ -36,7 +38,7 @@ class AutorController extends Controller
         $autor->save();
         return response()->json($autor, 201);
     }
-       
+
     /**
      * Atualiza uma instância de autor.
      *
@@ -44,7 +46,8 @@ class AutorController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function update(Autor $autor, Request $request){
+    public function update(Autor $autor, Request $request)
+    {
         $autor->update($request->all());
         return response()->json($autor, 200);
     }
@@ -54,8 +57,9 @@ class AutorController extends Controller
      *
      * @param Autor $autor
      * @return Response
-     */        
-    public function destroy(Autor $autor){
+     */
+    public function destroy(Autor $autor)
+    {
         $autor->delete();
         return response()->json(null, 204);
     }
@@ -65,8 +69,9 @@ class AutorController extends Controller
      *
      * @param Autor $autor
      * @return Response
-     */        
-    public function show(Autor $autor){
+     */
+    public function show(Autor $autor)
+    {
         return $autor;
     }
 }

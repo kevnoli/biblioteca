@@ -7,13 +7,15 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
+use App\Models\Usuario;
+
 class DatabaseSeeder extends Seeder
 {
     /**
-    * Run the database seeders.
-    *
-    * @return void
-    */
+     * Run the database seeders.
+     *
+     * @return void
+     */
     public function run()
     {
         DB::table('perfis')->insert([
@@ -33,15 +35,10 @@ class DatabaseSeeder extends Seeder
             'uf' => 'BA'
         ]);
 
-        $cpf = '';
-        for ($i = 0; $i<11; $i++) 
-        {
-            $cpf .= mt_rand(0,9);
-        }
         DB::table('usuarios')->insert([
-            'cpf' => $cpf,
+            'cpf' => '85913005562',
             'nome' => Str::random(10),
-            'email' => Str::random(10).'@gmail.com',
+            'email' => Str::random(10) . '@gmail.com',
             'senha' => Hash::make('123456'),
             'administrador' => true,
             'telefone' => '77999999999',
@@ -49,6 +46,11 @@ class DatabaseSeeder extends Seeder
             'perfil_id' => 1,
             'created_at' => now(),
             'updated_at' => now()
+        ]);
+
+        $this->call([
+            UsuarioSeeder::class,
+            LivroSeeder::class
         ]);
     }
 }

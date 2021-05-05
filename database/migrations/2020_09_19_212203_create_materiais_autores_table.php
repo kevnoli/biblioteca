@@ -17,7 +17,7 @@ class CreateMateriaisAutoresTable extends Migration
             $table->foreignId('autor_id')->constrained('autores');
             $table->unsignedBigInteger('material_id');
             $table->foreign('material_id')->references('id')->on('materiais');
-            $table->unsignedTinyInteger('ordem');
+            //$table->unsignedTinyInteger('ordem');
             $table->timestamps();
             $table->softDeletes();
         });

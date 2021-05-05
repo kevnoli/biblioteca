@@ -22,4 +22,11 @@ class Outros extends Model
      * @var string
      */
     protected $primaryKey = 'material_id';
+    
+    /**
+     * Listar material.
+     */
+    public function material(){
+        return $this->belongsTo('App\Models\Material');
+    }
 }

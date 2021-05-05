@@ -24,9 +24,9 @@ class Livro extends Model
     protected $primaryKey = 'material_id';
 
     /**
-     * Listar editora que publicou o livro.
+     * Listar material do livro.
      */
-    public function editora(){
-        return $this->belongsTo('App\Models\Editora');
+    public function material(){
+        return $this->belongsTo('App\Models\Material');
     }
 }

@@ -24,7 +24,7 @@ class Perfil extends Model
     protected $fillable = [ 'id', 'max_livro', 'tempo_emprestimo', 'tempo_renovacao', 'descricao', 'max_reserva' ];
 
     /**
-     * Listar usuarios que cadastrados no perfil.
+     * Listar usuarios cadastrados no perfil.
      */
     public function usuarios(){
         return $this->hasMany('App\Models\Usuario');

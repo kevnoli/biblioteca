@@ -22,4 +22,18 @@ class ItemEmprestimo extends Model
      * @var string
      */
     protected $table = 'itens_emprestimo';
+
+    /**
+     * Listar emprestimo do item.
+     */
+    public function emprestimo(){
+        return $this->belongsTo('App\Models\Emprestimo');
+    }
+
+    /**
+     * Listar exemplar solicitado no item.
+     */
+    public function exemplar(){
+        return $this->hasOne('App\Models\Exemplar', 'exemplar_tombo');
+    }
 }

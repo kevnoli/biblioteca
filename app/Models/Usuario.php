@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Usuario extends Authenticatable implements JWTSubject
 {
-    use Notifiable;
+    use Notifiable, HasFactory;
 
     public function getAuthPassword(){
         return $this->senha;
@@ -64,6 +65,13 @@ class Usuario extends Authenticatable implements JWTSubject
     }
 
     /**
+     * Listar editoras cadastradas pelo usuario.
+     */
+    public function editoras(){
+        return $this->belongsTo('App\Models\Perfil');
+    }
+
+    /**
      * Listar reservas solicitadas pelo usuario.
      */
     public function reservas(){
@@ -73,12 +81,12 @@ class Usuario extends Authenticatable implements JWTSubject
     /**
      * Listar emprestimos realizados pelo usuario.
      */
-    public function emprestimos(){
+    public function emprestimos_solicitados(){
         return $this->hasMany('App\Models\Emprestimo');
     }
 
     /**
-     * O identificador que será salvo no sujeito JWT.
+     * O identificador que será salvo no objeto JWT.
      *
      * @return mixed
      */

@@ -8,25 +8,34 @@ use Illuminate\Database\Eloquent\Model;
 class Autor extends Model
 {
     use HasFactory;
-    
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = [ 'nome', 'sobrenome', 'usuario_cpf' ];
+    protected $fillable = ['nome', 'sobrenome', 'usuario_cpf'];
 
     /**
-    * A tabela associada ao modelo.
-    *
-    * @var string
-    */
-   protected $table = 'autores';
+     * A tabela associada ao modelo.
+     *
+     * @var string
+     */
+    protected $table = 'autores';
 
-   /**
+    /**
      * Listar administrador que cadastrou o autor.
      */
-    public function administrador(){
+    public function administrador()
+    {
         return $this->belongsTo('App\Models\Usuario');
+    }
+
+    /**
+     * Listar materiais produzidos pelo autor.
+     */
+    public function materiais()
+    {
+        return $this->belongsToMany('App\Models\Material', 'materiais_autores');
     }
 }

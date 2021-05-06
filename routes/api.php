@@ -31,7 +31,7 @@ Route::group(['middleware' => 'jwt.auth', 'prefix' => 'autores'], function () {
     Route::delete('{autor}', [AutorController::class, 'destroy']);
 });
 
-Route::group(['prefix' => 'editoras'], function () {
+Route::group(['middleware' => 'jwt.auth', 'prefix' => 'editoras'], function () {
     Route::get('/pesquisar', [EditoraController::class, 'pesquisar'])->where('pesquisar', '.*');
     Route::get('', [EditoraController::class, 'index']);
     Route::get('{editora}', [EditoraController::class, 'show']);
@@ -40,7 +40,7 @@ Route::group(['prefix' => 'editoras'], function () {
     Route::delete('{editora}', [EditoraController::class, 'destroy']);
 });
 
-Route::group(['prefix' => 'emprestimos'], function () {
+Route::group(['middleware' => 'jwt.auth', 'prefix' => 'emprestimos'], function () {
     Route::get('', [EmprestimoController::class, 'index']);
     Route::get('{emprestimo}', [EmprestimoController::class, 'show']);
     Route::post('', [EmprestimoController::class, 'store']);
@@ -48,7 +48,7 @@ Route::group(['prefix' => 'emprestimos'], function () {
     Route::delete('{emprestimo}', [EmprestimoController::class, 'destroy']);
 });
 
-Route::group(['prefix' => 'enderecos'], function () {
+Route::group(['middleware' => 'jwt.auth', 'prefix' => 'enderecos'], function () {
     Route::get('', [EnderecoController::class, 'index']);
     Route::get('{endereco}', [EnderecoController::class, 'show']);
     Route::post('', [EnderecoController::class, 'store']);
@@ -56,7 +56,7 @@ Route::group(['prefix' => 'enderecos'], function () {
     Route::delete('{endereco}', [EnderecoController::class, 'destroy']);
 });
 
-Route::group(['prefix' => 'exemplares'], function () {
+Route::group(['middleware' => 'jwt.auth', 'prefix' => 'exemplares'], function () {
     Route::get('', [ExemplarController::class, 'index']);
     Route::get('{exemplar}', [ExemplarController::class, 'show']);
     Route::post('', [ExemplarController::class, 'store']);
@@ -64,7 +64,7 @@ Route::group(['prefix' => 'exemplares'], function () {
     Route::delete('{exemplar}', [ExemplarController::class, 'destroy']);
 });
 
-Route::group(['prefix' => 'materiais'], function () {
+Route::group(['middleware' => 'jwt.auth', 'prefix' => 'materiais'], function () {
     Route::get('', [MaterialController::class, 'index']);
     Route::get('{material}', [MaterialController::class, 'show']);
     Route::post('', [MaterialController::class, 'store']);
@@ -72,7 +72,7 @@ Route::group(['prefix' => 'materiais'], function () {
     Route::delete('{material}', [MaterialController::class, 'destroy']);
 });
 
-Route::group(['prefix' => 'livros'], function () {
+Route::group(['middleware' => 'jwt.auth', 'prefix' => 'livros'], function () {
     Route::get('', [LivroController::class, 'index']);
     Route::get('{livro}', [LivroController::class, 'show']);
     Route::post('', [LivroController::class, 'store']);
@@ -88,7 +88,7 @@ Route::group(['middleware' => 'jwt.auth', 'prefix' => 'revistas'], function () {
     Route::delete('{revista}', [RevistaController::class, 'destroy']);
 });
 
-Route::group(['prefix' => 'outros'], function () {
+Route::group(['middleware' => 'jwt.auth', 'prefix' => 'outros'], function () {
     Route::get('', [OutrosController::class, 'index']);
     Route::get('{outros}', [OutrosController::class, 'show']);
     Route::post('', [OutrosController::class, 'store']);

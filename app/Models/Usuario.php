@@ -13,7 +13,7 @@ class Usuario extends Authenticatable implements JWTSubject
 
     public function getAuthPassword(){
         return $this->senha;
-    }
+    } 
     
     /**
      * Os atributos de atribuição em massa.
@@ -67,22 +67,22 @@ class Usuario extends Authenticatable implements JWTSubject
     /**
      * Listar editoras cadastradas pelo usuario.
      */
-    public function editoras(){
+    public function editora(){
         return $this->belongsTo('App\Models\Perfil');
     }
 
     /**
      * Listar reservas solicitadas pelo usuario.
      */
-    public function reservas(){
+    public function reserva(){
         return $this->hasMany('App\Models\Reserva');
     }
 
     /**
      * Listar emprestimos realizados pelo usuario.
      */
-    public function emprestimos_solicitados(){
-        return $this->hasMany('App\Models\Emprestimo');
+    public function emprestimo_solicitado(){
+        return $this->hasMany('App\Models\Emprestimo', 'usuario_cpf');
     }
 
     /**

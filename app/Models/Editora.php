@@ -26,7 +26,7 @@ class Editora extends Model
     /**
      * Listar livros publicados pela editora.
      */
-    public function livros(){
+    public function livro(){
         return $this->hasMany('App\Models\Livro');
     }
 }

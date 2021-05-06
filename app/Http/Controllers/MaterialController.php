@@ -12,25 +12,27 @@ class MaterialController extends Controller
      *
      * @return Response
      */
-    public function index(){
+    public function index()
+    {
         return Material::all();
-     }
-     
-     /**
+    }
+
+    /**
      * Cria nova instância de material.
      *
      * @param Request $request
      * @return Response
      */
-    public function store(Request $request){
-        $request->validate([ 
+    public function store(Request $request)
+    {
+        $request->validate([
             'titulo' => 'required',
             'local' => 'required',
             'ano_publicacao' => 'required',
             'local_publicacao' => 'required',
             'tipo' => 'required',
             'usuario_cpf' => 'required',
-            ]);
+        ]);
         $material = new Material;
         $material->titulo = $request->titulo;
         $material->local = $request->local;
@@ -41,7 +43,7 @@ class MaterialController extends Controller
         $material->save();
         return response()->json($material, 201);
     }
-       
+
     /**
      * Atualiza uma instância de material.
      *
@@ -49,7 +51,8 @@ class MaterialController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function update(Material $material, Request $request){
+    public function update(Material $material, Request $request)
+    {
         $material->update($request->all());
         return response()->json($material, 200);
     }
@@ -59,8 +62,9 @@ class MaterialController extends Controller
      *
      * @param Material $material
      * @return Response
-     */        
-    public function destroy(Material $material){
+     */
+    public function destroy(Material $material)
+    {
         $material->delete();
         return response()->json(null, 204);
     }
@@ -70,8 +74,19 @@ class MaterialController extends Controller
      *
      * @param Material $material
      * @return Response
-     */        
-    public function show(Material $material){
-        return $material;
+     */
+    public function show(Material $material)
+    {
+        switch ($material->tipo) {
+            case 1:
+                return $material->load(['livro','autor']);
+                break;
+            case 2:
+                return $material->load(['revista', 'autor']);
+                break;
+            case 3:
+                return $material->load(['outros', 'autor']);
+                break;
+        }
     }
 }

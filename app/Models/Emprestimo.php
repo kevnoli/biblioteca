@@ -44,7 +44,7 @@ class Emprestimo extends Model
     /**
      * Listar itens que compoem o emprestimo.
      */
-    public function itens(){
+    public function item(){
         return $this->hasMany('App\Models\ItemEmprestimo');
     }
 }

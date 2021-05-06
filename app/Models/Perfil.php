@@ -26,7 +26,7 @@ class Perfil extends Model
     /**
      * Listar usuarios cadastrados no perfil.
      */
-    public function usuarios(){
+    public function usuario(){
         return $this->hasMany('App\Models\Usuario');
     }
 }

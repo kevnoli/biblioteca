@@ -42,7 +42,7 @@ class Material extends Model
     /**
      * Listar exemplares do material.
      */
-    public function exemplares()
+    public function exemplar()
     {
         return $this->hasMany('App\Models\Exemplar');
     }
@@ -50,7 +50,7 @@ class Material extends Model
     /**
      * Listar exemplares do material.
      */
-    public function livros()
+    public function livro()
     {
         return $this->hasMany('App\Models\Livro');
     }
@@ -58,7 +58,7 @@ class Material extends Model
     /**
      * Listar exemplares do material.
      */
-    public function revistas()
+    public function revista()
     {
         return $this->hasMany('App\Models\Revista');
     }

@@ -34,7 +34,7 @@ class Autor extends Model
     /**
      * Listar materiais produzidos pelo autor.
      */
-    public function materiais()
+    public function material()
     {
         return $this->belongsToMany('App\Models\Material', 'materiais_autores');
     }

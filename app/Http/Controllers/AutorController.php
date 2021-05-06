@@ -49,7 +49,7 @@ class AutorController extends Controller
     public function update(Autor $autor, Request $request)
     {
         $autor->update($request->all());
-        return response()->json($autor, 200);
+        return response()->json($autor);
     }
 
     /**
@@ -73,5 +73,29 @@ class AutorController extends Controller
     public function show(Autor $autor)
     {
         return $autor;
+    }
+
+    /**
+     * Pesquisa autores.
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function pesquisar(Request $request)
+    {
+        $builder = Autor::query();
+        if ($request->anyFilled(['nome', 'sobrenome'])) {
+            foreach ($request->keys() as $chave) {
+                $builder->where($chave, 'LIKE', $request[$chave]);
+            }
+            $resultado = $builder->get();
+            if (!$resultado->isEmpty()) {
+                return response()->json($resultado);
+            } else {
+                return response(['mensagem' => 'Nenhum registro encontrado'], 404);
+            }
+        } else {
+            return response()->json(['mensagem' => 'Parâmetros faltando'], 422);
+        }
     }
 }

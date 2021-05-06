@@ -23,15 +23,16 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
 });
 
 Route::group(['middleware' => 'jwt.auth', 'prefix' => 'autores'], function () {
+    Route::get('/pesquisar', [AutorController::class, 'pesquisar'])->where('pesquisar', '.*');
     Route::get('', [AutorController::class, 'index']);
     Route::get('{autor}', [AutorController::class, 'show']);
     Route::post('', [AutorController::class, 'store']);
     Route::put('{autor}', [AutorController::class, 'update']);
     Route::delete('{autor}', [AutorController::class, 'destroy']);
-    Route::get('/pesquisa/{termo}', [AutorController::class, 'search']);
 });
 
 Route::group(['prefix' => 'editoras'], function () {
+    Route::get('/pesquisar', [EditoraController::class, 'pesquisar'])->where('pesquisar', '.*');
     Route::get('', [EditoraController::class, 'index']);
     Route::get('{editora}', [EditoraController::class, 'show']);
     Route::post('', [EditoraController::class, 'store']);
@@ -63,14 +64,6 @@ Route::group(['prefix' => 'exemplares'], function () {
     Route::delete('{exemplar}', [ExemplarController::class, 'destroy']);
 });
 
-Route::group(['prefix' => 'livros'], function () {
-    Route::get('', [LivroController::class, 'index']);
-    Route::get('{livro}', [LivroController::class, 'show']);
-    Route::post('', [LivroController::class, 'store']);
-    Route::put('{livro}', [LivroController::class, 'update']);
-    Route::delete('{livro}', [LivroController::class, 'destroy']);
-});
-
 Route::group(['prefix' => 'materiais'], function () {
     Route::get('', [MaterialController::class, 'index']);
     Route::get('{material}', [MaterialController::class, 'show']);
@@ -79,12 +72,28 @@ Route::group(['prefix' => 'materiais'], function () {
     Route::delete('{material}', [MaterialController::class, 'destroy']);
 });
 
+Route::group(['prefix' => 'livros'], function () {
+    Route::get('', [LivroController::class, 'index']);
+    Route::get('{livro}', [LivroController::class, 'show']);
+    Route::post('', [LivroController::class, 'store']);
+    Route::put('{livro}', [LivroController::class, 'update']);
+    Route::delete('{livro}', [LivroController::class, 'destroy']);
+});
+
+Route::group(['middleware' => 'jwt.auth', 'prefix' => 'revistas'], function () {
+    Route::get('', [RevistaController::class, 'index']);
+    Route::get('{revista}', [RevistaController::class, 'show']);
+    Route::post('', [RevistaController::class, 'store']);
+    Route::put('{revista}', [RevistaController::class, 'update']);
+    Route::delete('{revista}', [RevistaController::class, 'destroy']);
+});
+
 Route::group(['prefix' => 'outros'], function () {
-    Route::get('', [MaterialController::class, 'index']);
-    Route::get('{outros}', [MaterialController::class, 'show']);
-    Route::post('', [MaterialController::class, 'store']);
-    Route::put('{outros}', [MaterialController::class, 'update']);
-    Route::delete('{outros}', [MaterialController::class, 'destroy']);
+    Route::get('', [OutrosController::class, 'index']);
+    Route::get('{outros}', [OutrosController::class, 'show']);
+    Route::post('', [OutrosController::class, 'store']);
+    Route::put('{outros}', [OutrosController::class, 'update']);
+    Route::delete('{outros}', [OutrosController::class, 'destroy']);
 });
 
 Route::group(['middleware' => 'jwt.auth', 'prefix' => 'perfis'], function () {
@@ -103,15 +112,8 @@ Route::group(['middleware' => 'jwt.auth', 'prefix' => 'reservas'], function () {
     Route::delete('{reserva}', [ReservaController::class, 'destroy']);
 });
 
-Route::group(['middleware' => 'jwt.auth', 'prefix' => 'revistas'], function () {
-    Route::get('', [RevistaController::class, 'index']);
-    Route::get('{revista}', [RevistaController::class, 'show']);
-    Route::post('', [RevistaController::class, 'store']);
-    Route::put('{revista}', [RevistaController::class, 'update']);
-    Route::delete('{revista}', [RevistaController::class, 'destroy']);
-});
-
 Route::group(['middleware' => 'jwt.auth', 'prefix' => 'usuarios'], function () {
+    Route::get('/pesquisar', [UsuarioController::class, 'pesquisar'])->where('pesquisar', '.*');
     Route::get('', [UsuarioController::class, 'index']);
     Route::get('{usuario}', [UsuarioController::class, 'show']);
     Route::post('', [UsuarioController::class, 'store']);

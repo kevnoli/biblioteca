@@ -70,7 +70,7 @@ class UsuarioController extends Controller
      * @return Response
      */        
     public function destroy(Usuario $usuario){
-        $usuario->delete();
+            $usuario->delete();
         return response()->json(null, 204);
     }
 
@@ -93,7 +93,7 @@ class UsuarioController extends Controller
     public function pesquisar(Request $request)
     {
         $builder = Usuario::query();
-        if ($request->filled(['cpf', 'nome', 'email'])) {
+        if ($request->anyFilled(['cpf', 'nome', 'email'])) {
             foreach ($request->keys() as $chave) {
                 $builder->where($chave, 'LIKE', $request[$chave]);
             }

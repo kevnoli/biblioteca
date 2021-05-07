@@ -59,7 +59,7 @@ export default {
   },
   mounted: function () {
   this.$nextTick(function () {
-    this.$refs.button.$el.focus()
+    this.$refs.button.focus()
   })
 }
 };

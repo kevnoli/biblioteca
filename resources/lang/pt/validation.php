@@ -110,7 +110,7 @@ return [
         'string' => 'O campo :attribute deve ter :size caracteres.',
         'array' => 'O campo :attribute deve ter :size itens.',
     ],
-    'starts_with' => 'O campo :attribute deve começar com: :values.',
+    'starts_with' => 'O campo :attribute deve começar com um dos seguintes valores: :values.',
     'string' => 'O campo :attribute deve ser uma string.',
     'timezone' => 'O campo :attribute deve ser um fuso-horário.',
     'unique' => 'O campo :attribute já está sendo usado.',

@@ -29,7 +29,7 @@ class AuthController extends Controller
         if ($token = Auth::attempt($credenciais)) {
             return response()->json()->header('Authorization', $token);
         } else {
-            return response()->json(['mensagem' => 'Não autorizado'], 401);
+            return response()->json(['message' => 'Não autorizado'], 401);
         }
     }
 
@@ -52,7 +52,7 @@ class AuthController extends Controller
     {
         Auth::logout();
 
-        return response()->json(['mensagem' => 'Desconectado com sucesso']);
+        return response()->json(['message' => 'Desconectado com sucesso.']);
     }
 
     /**

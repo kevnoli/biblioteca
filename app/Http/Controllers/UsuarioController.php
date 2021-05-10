@@ -14,23 +14,25 @@ class UsuarioController extends Controller
      *
      * @return Response
      */
-    public function index(){
+    public function index()
+    {
         return Usuario::all();
-     }
-     
-     /**
+    }
+
+    /**
      * Cria nova instância de usuario.
      *
      * @param Request $request
      * @return Response
      */
-    public function store(Request $request){
-        $request->validate([ 
-            'cpf' => [ 'required', new Cpf ], 
-            'nome' => 'required',
+    public function store(Request $request)
+    {
+        $request->validate([
+            'cpf' => ['required', new Cpf],
+            'nome' => ['required', 'alpha'],
             'telefone' => 'required',
-            'senha' => 'required',
-            'email' => 'required',
+            'senha' => ['required', 'confirmed', Password::min(8)->letters()->mixedCase()->numbers()->symbols()],
+            'email' => ['required', 'email:strict'],
             'endereco_id' => 'required',
             'perfil_id' => 'required',
         ]);
@@ -38,14 +40,14 @@ class UsuarioController extends Controller
         $usuario->cpf = $request->cpf;
         $usuario->nome = $request->nome;
         $usuario->telefone = $request->telefone;
-        $usuario->senha = $request->senha;
+        $usuario->password = $request->senha;
         $usuario->email = $request->email;
         $usuario->endereco_id = $request->endereco_id;
         $usuario->perfil_id = $request->perfil_id;
         $usuario->save();
         return response()->json($usuario, 201);
     }
-       
+
     /**
      * Atualiza uma instância de usuario.
      *
@@ -53,13 +55,17 @@ class UsuarioController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function update(Usuario $usuario, Request $request){
-        if($request->has('password')){
+    public function update(Usuario $usuario, Request $request)
+    {
+        if ($request->filled(['senha', 'nova_senha', 'senha_confirmation'])) {
             $request->validate([
-                'password' => [ 'confirmed', Password::min(8)->letters()->mixedCase()->numbers()->symbols()]
+                'senha' => ['required_with:nova_senha,nova_senha_confirmation'],
+                'nova_senha' => ['confirmed', 'required_with:senha', Password::min(8)->letters()->mixedCase()->numbers()->symbols()],
+                'nova_senha_confirmation' => ['required_with:senha,nova_senha']
             ]);
+            $usuario->password = $request->senha;
         }
-        $usuario->update($request->all());
+        $usuario->update($request->except('senha'));
         return response($usuario, 200);
     }
 
@@ -68,9 +74,10 @@ class UsuarioController extends Controller
      *
      * @param Usuario $usuario
      * @return Response
-     */        
-    public function destroy(Usuario $usuario){
-            $usuario->delete();
+     */
+    public function destroy(Usuario $usuario)
+    {
+        $usuario->delete();
         return response()->json(null, 204);
     }
 
@@ -79,8 +86,9 @@ class UsuarioController extends Controller
      *
      * @param Usuario $usuario
      * @return Response
-     */        
-    public function show(Usuario $usuario){
+     */
+    public function show(Usuario $usuario)
+    {
         return $usuario;
     }
 
@@ -92,19 +100,24 @@ class UsuarioController extends Controller
      */
     public function pesquisar(Request $request)
     {
+        $request->validate([
+            'cpf' =>  new Cpf,
+            'nome' => ['alpha', 'min:3'],
+            'email' => 'email:strict',
+        ]);
         $builder = Usuario::query();
         if ($request->anyFilled(['cpf', 'nome', 'email'])) {
             foreach ($request->keys() as $chave) {
-                $builder->where($chave, 'LIKE', $request[$chave]);
+                $builder->where($chave, 'LIKE', '%' . $request[$chave] . '%');
             }
             $resultado = $builder->get();
             if (!$resultado->isEmpty()) {
                 return response()->json($resultado);
             } else {
-                return response(['mensagem' => 'Nenhum registro encontrado'], 404);
+                return response(['errors' => 'Nenhum registro encontrado'], 404);
             }
         } else {
-            return response()->json(['mensagem' => 'Parâmetros faltando'], 422);
+            return response()->json(['errors' => 'Ao menos um dos campos deve ser prenchido: cpf, nome, email'], 422);
         }
     }
 }

@@ -42,7 +42,7 @@ export default {
             this.itens = resp.data;
           })
           .catch((e) => {
-            this.$dialog.notify.error(e.response.data.mensagem);
+            this.$dialog.notify.error(e.response.data.message);
           });
       } else {
         this.$http
@@ -50,8 +50,15 @@ export default {
           .then((resp) => {
             this.itens = resp.data;
           })
-          .catch((e) => {
-            this.$dialog.notify.error(e.response.data.mensagem);
+          .catch((exc) => {
+            let errors = exc.response.data.errors;
+            for (const attr in errors) {
+              if (Object.hasOwnProperty.call(errors, attr)) {
+                errors[attr].forEach((error) => {
+                  this.$dialog.notify.error(error);
+                });
+              }
+            }
           });
       }
     },

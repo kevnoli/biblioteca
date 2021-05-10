@@ -83,19 +83,25 @@ class AutorController extends Controller
      */
     public function pesquisar(Request $request)
     {
+        $request->validate(
+            [
+                'nome' => 'alpha_num',
+                'sobrenome' => 'alpha_num'
+            ]
+        );
         $builder = Autor::query();
         if ($request->anyFilled(['nome', 'sobrenome'])) {
             foreach ($request->keys() as $chave) {
-                $builder->where($chave, 'LIKE', $request[$chave]);
+                $builder->where($chave, 'LIKE', '%' . $request[$chave] . '%');
             }
             $resultado = $builder->get();
             if (!$resultado->isEmpty()) {
                 return response()->json($resultado);
             } else {
-                return response(['mensagem' => 'Nenhum registro encontrado'], 404);
+                return response(['message' => 'Nenhum registro encontrado'], 404);
             }
         } else {
-            return response()->json(['mensagem' => 'Parâmetros faltando'], 422);
+            return response()->json(['message' => 'Parâmetros faltando'], 422);
         }
     }
 }

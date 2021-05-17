@@ -5,7 +5,7 @@
       <v-card-text>
         <v-text-field v-model="pesquisa">
           <template v-slot:append>
-            <v-btn icon @click="busca()">
+            <v-btn icon @click="buscar()">
               <v-icon>mdi-magnify</v-icon>
             </v-btn>
           </template>
@@ -34,7 +34,7 @@ export default {
     ],
   }),
   methods: {
-    busca() {
+    buscar() {
       if (this.pesquisa == "") {
         this.$http
           .get("usuarios/")
@@ -63,11 +63,30 @@ export default {
       }
     },
     editar() {},
-    deletar(item) {
-      console.log(item);
-      this.$http.delete("usuarios/" + item.cpf).then(() => {
-        this.$dialog.notify.success("Usuário deletado com sucesso.");
+    async deletar(item) {
+      let confirma = await this.$dialog.confirm({
+        text: "Tem certeza de que deseja excluir o registro?",
+        title: "Alerta",
+        persistent: true,
+        actions: {
+          false: "Não",
+          true: {
+            text: "Sim",
+            color: "primary",
+          },
+        },
       });
+      if (confirma) {
+        this.$http
+          .delete("usuarios/" + item.cpf)
+          .then(() => {
+            this.itens.splice(this.itens.indexOf(item), 1);
+            this.$dialog.notify.success("Usuário deletado com sucesso.");
+          })
+          .catch((e) => {
+            console.error(e.response);
+          });
+      }
     },
   },
 };

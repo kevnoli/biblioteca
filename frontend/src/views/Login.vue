@@ -5,7 +5,13 @@
       <v-card-text>
         <v-form v-model="valido">
           <label for="cpf">CPF</label>
-          <v-text-field id="cpf" ref="cpf" v-model="cpf" autofocus @keypress.enter="login"></v-text-field>
+          <v-text-field
+            id="cpf"
+            ref="cpf"
+            v-model="cpf"
+            autofocus
+            @keypress.enter="login"
+          ></v-text-field>
           <label for="senha">Senha</label>
           <v-text-field
             id="senha"
@@ -58,9 +64,9 @@ export default {
     },
   },
   mounted: function () {
-  this.$nextTick(function () {
-    this.$refs.button.focus()
-  })
-}
+    this.$nextTick(function () {
+      this.$refs.cpf.focus();
+    });
+  },
 };
 </script>

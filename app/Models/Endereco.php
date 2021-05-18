@@ -14,7 +14,7 @@ class Endereco extends Model
      *
      * @var array
      */
-    protected $fillable = [ 'id', 'logradouro', 'bairro', 'numero', 'complemento', 'cep', 'cidade', 'uf' ];
+    protected $fillable = [ 'id', 'logradouro', 'numero', 'complemento', 'bairro', 'cep', 'cidade', 'uf' ];
 
     /**
      * Listar o usuario do endereco.

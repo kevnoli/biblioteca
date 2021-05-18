@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\Password;
 use App\Models\Usuario;
+use App\Models\Endereco;
 use App\Rules\Cpf;
 
 class UsuarioController extends Controller
@@ -33,7 +34,12 @@ class UsuarioController extends Controller
             'telefone' => 'required',
             'senha' => ['required', 'confirmed', Password::min(8)->letters()->mixedCase()->numbers()->symbols()],
             'email' => ['required', 'email:strict'],
-            'endereco_id' => 'required',
+            'logradouro' => 'required',
+            'bairro' => 'required',
+            'numero' => 'required',
+            'cep' => 'required',
+            'cidade' => 'required',
+            'uf' => ['required'],
             'perfil_id' => 'required',
         ]);
         $usuario = new Usuario;
@@ -42,8 +48,9 @@ class UsuarioController extends Controller
         $usuario->telefone = $request->telefone;
         $usuario->password = $request->senha;
         $usuario->email = $request->email;
-        $usuario->endereco_id = $request->endereco_id;
+        $endereco = new Endereco($request->only(['logradouro', 'numero', 'complemento', 'bairro', 'cep', 'cidade', 'uf']));
         $usuario->perfil_id = $request->perfil_id;
+        $usuario->endereco()->save($endereco);
         $usuario->save();
         return response()->json($usuario, 201);
     }
